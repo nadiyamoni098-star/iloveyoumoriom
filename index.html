@@ -130,7 +130,23 @@ document.getElementById("msg").style.color="red";
     }
   function checkHusband(ans){
     if(ans=="serajul"){
-        alert("💖 একদম ঠিক! 💖");
+        if(ans=="serajul"){
+document.getElementById("app").innerHTML = `
+<h1>🥰 শেষ প্রশ্ন</h1>
+
+<p>আমাকে কতটা ভালোবাসো? ❤️</p>
+
+<button onclick="alert('💖 আমিও তোমাকে অনেক ভালোবাসি! 💖')">
+অসীম ❤️
+</button>
+
+<br><br>
+
+<button onclick="alert('😒 ভুল উত্তর!')">
+একটু 🤏
+</button>
+`;
+        }
     }else{
         document.getElementById("msg").innerHTML="❌ ভুল উত্তর!";
         document.getElementById("msg").style.color="red";
