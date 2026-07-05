@@ -129,8 +129,27 @@ document.getElementById("msg").style.color="red";
 }
     }
   function checkHusband(ans){
-    if(ans=="serajul"){
-        if(ans=="serajul"){
+    if(ans=="serajul"){document.getElementById("app").innerHTML = `
+document.getElementById("app").innerHTML = `
+<h1>🥰 Question 3</h1>
+
+<p>আমার ডাক নাম কী? 💖</p>
+
+<input type="text" id="piku" placeholder="উত্তর লিখো">
+
+<br><br>
+
+<button onclick="checkPiku()">
+Next ❤️
+</button>
+
+<p id="msg"></p>
+`;
+
+ 
+
+
+      
 document.getElementById("app").innerHTML = `
 <h1>🥰 শেষ প্রশ্ন</h1>
 
@@ -150,6 +169,16 @@ document.getElementById("app").innerHTML = `
     }else{
         document.getElementById("msg").innerHTML="❌ ভুল উত্তর!";
         document.getElementById("msg").style.color="red";
+    }
+  }
+  function checkPiku(){
+    let ans = document.getElementById("piku").value.toLowerCase();
+
+    if(ans=="piku"){
+        alert("🥰 একদম ঠিক! ❤️");
+    }else{
+        document.getElementById("msg").innerHTML = "❌ ভুল উত্তর, আবার চেষ্টা করো!";
+        document.getElementById("msg").style.color = "red";
     }
   }
     </script>
