@@ -1,188 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Pakhi Surprise 💖</title>
+<title>Pakhi ❤️</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
 }
 
 body{
 background:#000;
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
 overflow:hidden;
+height:100vh;
+font-family:sans-serif;
 }
 
-#app{
+#loading{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:#fff;
+font-size:30px;
 text-align:center;
-padding:20px;
-}
-
-h1{
-color:#ff66cc;
-font-size:42px;
+animation:blink 1s infinite;
 text-shadow:0 0 15px #ff66cc;
-margin-bottom:20px;
 }
 
-p{
-font-size:20px;
-margin-bottom:25px;
+@keyframes blink{
+50%{opacity:.3;}
 }
 
-button{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:50px;
-background:#ff2d55;
-color:white;
-cursor:pointer;
+.item{
+position:absolute;
+font-size:24px;
+font-weight:bold;
+font-style:italic;
+white-space:nowrap;
+animation:fall linear forwards;
+text-shadow:0 0 12px currentColor;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-120px) rotate(-25deg) scale(.6);
+opacity:0;
+}
+15%{
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(25deg) scale(1.2);
+opacity:1;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
-
-<h1>💖 Pakhi Surprise 💖</h1>
-
-<p>শুধু তোমার জন্য একটা ছোট্ট সারপ্রাইজ... 🥹❤️</p>
-
-<button id="startBtn">
-🎁 Open Surprise
-</button>
-
+<div id="loading">
+𝐏𝐚𝐤𝐡𝐢 𝐄𝐭𝐚 𝐓𝐦𝐫 𝐉𝐨𝐧𝐧𝐨! 🥺❤️‍🩹
 </div>
 
 <script>
-  const btn = document.getElementById("startBtn");
 
-btn.onclick = function () {
-    document.getElementById("app").innerHTML = `
-        <h1>🔐 Verifying...</h1>
-        <p id="loading">0%</p>
-    `;
+setTimeout(()=>{
 
-    let p = 0;
+loading.remove();
 
-    let t = setInterval(() => {
-        p++;
+let list=[
+"🌸 I Love You Moriom 🌸",
+"✨ I Love You Moriom ✨",
+"🫶 I Love You Moriom 🫶",
+"🎀 I Love You Moriom 🎀",
+"🌷 I Love You Moriom 🌷",
+"🦋 I Love You Moriom 🦋",
+"👑 Moriom 👑",
+"💍 Forever",
+"🥹",
+"✨",
+"🌸",
+"🎀"
+];
 
-        document.getElementById("loading").innerHTML = p + "%";
+setInterval(()=>{
 
-        if (p >= 100) {
-            clearInterval(t);
+for(let i=0;i<8;i++){
 
-            document.getElementById("app").innerHTML = `
-                <h1>🥹 Question 1</h1>
+let d=document.createElement("div");
+d.className="item";
 
-                <p>তোমার রিয়েল নাম কী?</p>
+d.innerHTML=list[Math.floor(Math.random()*list.length)];
 
-                <input id="ans" placeholder="উত্তর লিখো">
+d.style.left=Math.random()*95+"vw";
 
-                <br><br>
+let colors=["#ff66cc","#00e5ff","#ffd700","#ffffff","#c77dff"];
 
-                <button onclick="checkName()">
-                Next ❤️
-                </button>
+d.style.color=colors[Math.floor(Math.random()*colors.length)];
 
-                <p id="msg"></p>
-            `;
-        }
+d.style.fontSize=(20+Math.random()*12)+"px";
 
-    }, 30);
-};
+d.style.animationDuration=(4+Math.random()*4)+"s";
 
-function checkName(){
+document.body.appendChild(d);
 
-    let a = document.getElementById("ans").value.trim().toLowerCase();
+setTimeout(()=>d.remove(),8000);
 
-    if(a=="মরিয়ম" || a=="moriom"){
-        document.getElementById("app").innerHTML = `
-<h1>🥹 Question 2</h1>
-
-<p>তোমার জামাইয়ের নাম কী? 😌</p>
-
-<button onclick="checkHusband('serajul')">❤️ সেরাজুল</button>
-
-<br><br>
-
-<button onclick="checkHusband('balish')">🛏️ কুলবালিশ</button>
-
-<p id="msg"></p>
-`;
-    }else{
-      document.getElementById("msg").innerHTML="❌ ভুল উত্তর!";
-document.getElementById("msg").style.color="red";
 }
-    }
-  function checkHusband(ans){
-    if(ans=="serajul"){document.getElementById("app").innerHTML = `
-document.getElementById("app").innerHTML = `
-<h1>🥰 Question 3</h1>
 
-<p>আমার ডাক নাম কী? 💖</p>
+},400);
 
-<input type="text" id="piku" placeholder="উত্তর লিখো">
+},3000);
 
-<br><br>
+</script>
 
-<button onclick="checkPiku()">
-Next ❤️
-</button>
-
-<p id="msg"></p>
-`;
-
- 
-
-
-      
-document.getElementById("app").innerHTML = `
-<h1>🥰 শেষ প্রশ্ন</h1>
-
-<p>আমাকে কতটা ভালোবাসো? ❤️</p>
-
-<button onclick="alert('💖 আমিও তোমাকে অনেক ভালোবাসি! 💖')">
-অসীম ❤️
-</button>
-
-<br><br>
-
-<button onclick="alert('😒 ভুল উত্তর!')">
-একটু 🤏
-</button>
-`;
-        }
-    }else{
-        document.getElementById("msg").innerHTML="❌ ভুল উত্তর!";
-        document.getElementById("msg").style.color="red";
-    }
-  }
-  function checkPiku(){
-    let ans = document.getElementById("piku").value.toLowerCase();
-
-    if(ans=="piku"){
-        alert("🥰 একদম ঠিক! ❤️");
-    }else{
-        document.getElementById("msg").innerHTML = "❌ ভুল উত্তর, আবার চেষ্টা করো!";
-        document.getElementById("msg").style.color = "red";
-    }
-  }
-    </script>
 </body>
 </html>
-
-  
