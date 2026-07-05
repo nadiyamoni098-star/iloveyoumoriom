@@ -13,11 +13,7 @@ box-sizing:border-box;
 }
 
 body{
-height:100vh;
 overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
 background:radial-gradient(circle,#1a0033,#000);
 font-family:Arial,sans-serif;
 }
@@ -31,43 +27,26 @@ height:100%;
 z-index:0;
 }
 
-#welcome,#love{
-position:relative;
-z-index:2;
-text-align:center;
-color:#fff;
-}
-
 #love{
-display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+z-index:2;
 }
 
-h1{
-font-size:48px;
+#love h1{
+font-size:60px;
 color:#ff66cc;
-text-shadow:0 0 15px #ff66cc,0 0 35px #ff1493;
+text-shadow:0 0 10px #ff66cc,0 0 20px #ff66cc,0 0 40px #ff1493;
+animation:glow 2s infinite alternate;
 }
 
-p{
-margin:20px 0;
-font-size:22px;
+@keyframes glow{
+from{transform:scale(1);}
+to{transform:scale(1.05);}
 }
-
-button{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:50px;
-background:#ff2d55;
-color:#fff;
-cursor:pointer;
-box-shadow:0 0 20px #ff2d55;
-}
-
-button:hover{
-transform:scale(1.05);
-}
-
 </style>
 </head>
 
@@ -75,44 +54,29 @@ transform:scale(1.05);
 
 <canvas id="stars"></canvas>
 
-<div id="welcome">
-<h1>💖 Pakhi 💖</h1>
-<p>Eta shudhu tmr jonno... ❤️</p>
-
-<button onclick="startLove()">
-⭐ Get Started
-</button>
-
-</div>
-
 <div id="love">
-
 <h1>
-💖<br>
-𝐈 𝐋𝐨𝐯𝐞 𝐘𝐨𝐮<br>
-𝐌𝐨𝐫𝐢𝐨𝐦
+💖 I <br>
+Love <br>
+You <br>
+Moriom 💖
 </h1>
-
 </div>
 
 <script>
-
-function startLove(){
-document.getElementById("welcome").style.display="none";
-document.getElementById("love").style.display="block";
-}const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
 
 function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 }
 resize();
-window.addEventListener("resize",resize);
+window.onresize=resize;
 
 const stars=[];
 
-for(let i=0;i<180;i++){
+for(let i=0;i<150;i++){
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
@@ -121,7 +85,7 @@ s:Math.random()*1.5+0.3
 });
 }
 
-function draw(){
+function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle="white";
@@ -139,11 +103,10 @@ star.x=Math.random()*canvas.width;
 }
 });
 
-requestAnimationFrame(draw);
+requestAnimationFrame(animate);
 }
 
-draw();
-
+animate();
 </script>
 
 </body>
