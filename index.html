@@ -14,11 +14,11 @@ box-sizing:border-box;
 
 body{
 height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
-background:radial-gradient(circle at center,#1a0033,#000);
+background:radial-gradient(circle,#1a0033,#000);
 font-family:Arial,sans-serif;
 }
 
@@ -31,37 +31,45 @@ height:100%;
 z-index:0;
 }
 
-#welcome{
+#welcome,#love{
 position:relative;
 z-index:2;
 text-align:center;
-color:white;
+color:#fff;
 }
 
-#welcome h1{
-font-size:34px;
+#love{
+display:none;
+}
+
+h1{
+font-size:48px;
 color:#ff66cc;
-text-shadow:0 0 20px #ff66cc;
-margin-bottom:20px;
+text-shadow:0 0 15px #ff66cc,0 0 35px #ff1493;
 }
 
-#welcome p{
-font-size:20px;
-margin-bottom:30px;
+p{
+margin:20px 0;
+font-size:22px;
 }
 
 button{
-padding:14px 35px;
+padding:15px 35px;
 font-size:20px;
 border:none;
-border-radius:40px;
+border-radius:50px;
 background:#ff2d55;
-color:white;
+color:#fff;
 cursor:pointer;
 box-shadow:0 0 20px #ff2d55;
 }
-  </style>
-  </head>
+
+button:hover{
+transform:scale(1.05);
+}
+
+</style>
+</head>
 
 <body>
 
@@ -69,48 +77,51 @@ box-shadow:0 0 20px #ff2d55;
 
 <div id="welcome">
 <h1>💖 Pakhi 💖</h1>
+<p>Eta shudhu tmr jonno... ❤️</p>
 
-<p>Eta shudhu tmr jonno... 🥺❤️</p>
-
-<button onclick="startLove()">Get Started</button>
+<button onclick="startLove()">
+⭐ Get Started
+</button>
 
 </div>
-<div id="love" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;">
 
-<h1 style="font-size:55px;color:#ff66cc;
-text-shadow:0 0 20px #ff66cc,0 0 40px #ff3399;">
-💖 𝐈 𝐋𝐨𝐯𝐞 𝐘𝐨𝐮<br>𝐌𝐨𝐫𝐢𝐨𝐦 💖
+<div id="love">
+
+<h1>
+💖<br>
+𝐈 𝐋𝐨𝐯𝐞 𝐘𝐨𝐮<br>
+𝐌𝐨𝐫𝐢𝐨𝐦
 </h1>
 
 </div>
 
 <script>
+
 function startLove(){
 document.getElementById("welcome").style.display="none";
 document.getElementById("love").style.display="block";
-}
-</script>
-
-</body>
-</html>
-const canvas = document.getElementById("stars");
+}const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
 
-const stars = [];
+const stars=[];
 
-for(let i=0;i<150;i++){
+for(let i=0;i<180;i++){
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 r:Math.random()*2,
-s:Math.random()*1.5+0.2
+s:Math.random()*1.5+0.3
 });
 }
 
-function animate(){
+function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 ctx.fillStyle="white";
@@ -121,16 +132,19 @@ ctx.arc(star.x,star.y,star.r,0,Math.PI*2);
 ctx.fill();
 
 star.y+=star.s;
+
 if(star.y>canvas.height){
 star.y=0;
 star.x=Math.random()*canvas.width;
 }
 });
 
-requestAnimationFrame(animate);
+requestAnimationFrame(draw);
 }
 
-animate();</script>
+draw();
+
+</script>
+
 </body>
 </html>
-  
